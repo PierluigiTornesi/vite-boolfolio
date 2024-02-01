@@ -15,7 +15,7 @@ export default{
 </script>
 
 <template>
-  <h1>Titolo di prova</h1>
+  <h1 class="text-center">Lista dei projects</h1>
   <AppMain />
 </template>
 
