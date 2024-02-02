@@ -3,7 +3,16 @@
 export default{
   data(){
     return{
-
+        links: [
+            {
+                name: 'home',
+                title: 'Home'
+            },
+            {
+                name: 'about',
+                title: 'About'
+            }
+        ]
     }
   },
 }
@@ -19,11 +28,8 @@ export default{
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item ">
-          <router-link :to="{name: 'home'}" class="nav-link">Home</router-link>
-        </li>
-        <li class="nav-item ">
-          <router-link :to="{name: 'about'}" class="nav-link">About</router-link>
+        <li class="nav-item" v-for="link in links" :key="link.title">
+          <router-link :to="{name: link.name}" class="nav-link">{{ link.title }}</router-link>
         </li>
       </ul>
     </div>
