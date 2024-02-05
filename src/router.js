@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "./pages/HomePage.vue";
 import AboutPage from "./pages/AboutPage.vue";
 import ShowProject from "./pages/ShowProject.vue";
+import NotFoundPage from "./pages/NotFoundPage.vue";
 
 
 const router = createRouter({
@@ -22,6 +23,12 @@ const router = createRouter({
             path: '/projects/:slug',
             name: 'show-project',
             component: ShowProject
+        },
+        {
+            //rotta page 404 not found
+            path: '/:pathMath(.*)*',
+            name: 'not-found',
+            component: NotFoundPage
         }
     ]
 });

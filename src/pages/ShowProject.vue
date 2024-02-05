@@ -18,9 +18,20 @@ export default{
             //controllo resp per vedere cosa ricevo
             console.log(resp);
             //salvo il project ricevuto
-            this.currentProject = resp.data.result;
-            this.technologies = this.currentProject.technologies;
-            console.log(this.currentProject);
+            if(resp.data.success){
+                this.currentProject = resp.data.result;
+                this.technologies = this.currentProject.technologies;
+                console.log(this.currentProject);
+            }else{
+                //messaggio 404
+                console.log('404 non found');
+                //restituisco il messaggio d'errore del resp
+                console.log(resp.data.message);
+                //oggetto per spostarsi tra le rotte
+                console.log(this.$router);
+                //mi sposto di rotta e vado nella page 404 not found
+                this.$router.push({name: 'not-found'});
+            }
         }).finally(() =>{
             this.loading = false;
         });
@@ -39,12 +50,12 @@ export default{
             <p><strong>Project number : </strong> {{ currentProject.id }}</p>
             <p><strong>Type : </strong> {{ currentProject.type.name }}</p>
             <p><strong>Description : </strong> {{ currentProject.description }}</p>
-        </div>
-        <div>
-            <strong>Technologies : </strong> 
-            <p v-for="technology in technologies ">
-                - {{ technology.name }}
-            </p>
+            <div>
+                <strong>Technologies : </strong> 
+                <p v-for="technology in technologies ">
+                    - {{ technology.name }}
+                </p>
+            </div>
         </div>
     </div>
 </template>
